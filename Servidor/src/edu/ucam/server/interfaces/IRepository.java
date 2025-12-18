@@ -1,8 +1,10 @@
 package edu.ucam.server.interfaces;
 
-public interface IRepository extends java.rmi.Remote {
-	public void add(Object obj);
-	public void remove(Object obj);
-	public void get(String id);
-	public void List();
+import java.util.ArrayList;
+
+public interface IRepository <T> extends java.rmi.Remote {
+	public void add(T obj);
+	public void remove(String id);
+	public T get(String id);
+	public ArrayList<T> List();
 }
