@@ -1,4 +1,4 @@
-package edu.ucam.server.interfaces;
+package edu.ucam.interfaces;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

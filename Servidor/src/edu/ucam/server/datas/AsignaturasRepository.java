@@ -5,10 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import edu.ucam.domain.Asignatura;
-import edu.ucam.server.interfaces.IRepository;
+import edu.ucam.interfaces.IRepository;
 
 public class AsignaturasRepository extends BaseRepository <Asignatura>{
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 3L;
 
 	public AsignaturasRepository() throws RemoteException {
 		super(Asignatura::getId);

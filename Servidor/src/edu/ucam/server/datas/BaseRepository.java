@@ -3,12 +3,12 @@ package edu.ucam.server.datas;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import edu.ucam.server.interfaces.IRepository;
 import java.util.function.Function;
 
+import edu.ucam.interfaces.IRepository;
+
 public class BaseRepository <T> extends UnicastRemoteObject implements IRepository<T>{
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	
 	private final ArrayList<T> data = new ArrayList<>();
 	private final Function<T, String> idGetter;
@@ -20,6 +20,13 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 
 	@Override
 	public void addModel(T obj) throws RemoteException {
+		String id = idGetter.apply(obj);
+		
+		if(get(id) != null) {
+			System.out.println("ID repetido: " + id);
+			return;
+		}
+		
 		data.add(obj);
 	}
 

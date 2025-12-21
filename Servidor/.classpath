@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Belshu/eclipse-workspace/Parcial 2/Practica-DAD/clasesdominio.jar">
+	<classpathentry kind="lib" path="C:/Users/Belshu/eclipse-workspace/Parcial 2/Practica-RMI/clasesdominio.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

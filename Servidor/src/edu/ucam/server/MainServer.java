@@ -4,15 +4,28 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.Scanner;
 
-import edu.ucam.server.interfaces.IRepository;
+import edu.ucam.server.config.*;
+import edu.ucam.server.service.*;
 import edu.ucam.domain.*;
-import edu.ucam.server.datas.AsignaturasRepository;
+import edu.ucam.interfaces.*;
+import edu.ucam.server.datas.*;
 
 public class MainServer {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		LocateRegistry.createRegistry(5000);
-		IRepository <Asignatura> repo = new AsignaturasRepository();
-		Naming.rebind("rmi://localhost:5000/RepositorioAsignaturas", repo);
+		
+		IContract contract = new ContractImp();
+		IRepository <Asignatura> asigRepo = new AsignaturasRepository();
+		
+		Naming.rebind(ServerConfig.nameBindContract, contract);
+		Naming.rebind(ServerConfig.nameBindAsigRepository, asigRepo);
+		
+		Scanner S = new Scanner(System.in);
+		
+		S.nextLine();
+		
+		System.exit(0);
 	}
 }
