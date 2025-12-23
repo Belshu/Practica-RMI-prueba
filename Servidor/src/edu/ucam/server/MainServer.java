@@ -22,6 +22,7 @@ public class MainServer {
 		Naming.rebind(ServerConfig.nameBindContract, contract);
 		Naming.rebind(ServerConfig.nameBindAsigRepository, asigRepo);
 		
+		System.out.print("Servidor abierto...");
 		Scanner S = new Scanner(System.in);
 		
 		S.nextLine();

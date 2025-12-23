@@ -8,15 +8,15 @@ public class AddHandler {
 	
 	public Asignatura addAsig(Scanner S) {
 		Asignatura asig = new Asignatura();
-		System.out.println(">> ID: ");
+		System.out.print(">> ID: ");
 		String id = S.nextLine();
 		asig.setId(id);
 		
-		System.out.println(">> Nombre: ");
+		System.out.print(">> Nombre: ");
 		String name = S.nextLine();
 		asig.setNombre(name);
 		
-		System.out.println(">> Creditos: ");
+		System.out.print(">> Creditos: ");
 		String creditsStr = S.nextLine();
 		int credits = -1;
 		

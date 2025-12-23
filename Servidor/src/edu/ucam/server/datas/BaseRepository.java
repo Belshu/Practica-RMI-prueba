@@ -31,10 +31,15 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 	}
 
 	@Override
-	public void remove(String id) throws RemoteException {
+	public boolean remove(String id) throws RemoteException {
 		T obj = get(id);
 		
-		if(obj != null) data.remove(obj);
+		if(obj != null) {
+			data.remove(obj);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
