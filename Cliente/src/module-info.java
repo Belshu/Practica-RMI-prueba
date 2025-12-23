@@ -1,6 +1,6 @@
 module Cliente {
 	requires java.rmi;
-	requires clasesdominio;
+	requires clasesdominiov2;
 	
 	exports edu.ucam.client to java.rmi;
 }

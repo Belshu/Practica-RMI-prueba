@@ -1,6 +1,6 @@
 module Servidor {
 	requires java.rmi;
-	requires clasesdominio;
+	requires clasesdominiov2;
 	
 	exports edu.ucam.interfaces;
 	exports edu.ucam.server;
