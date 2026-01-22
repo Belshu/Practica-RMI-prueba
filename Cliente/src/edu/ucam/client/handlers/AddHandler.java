@@ -39,83 +39,82 @@ public class AddHandler {
 	
 	// --------------------------------------------------------AÑADIR TITULOS
 	public Titulacion addTIT(Scanner S, IRepository<Asignatura> asigRepo, IRepository<Matricula> matRepo) throws RemoteException {  
-
-			Titulacion tit = new Titulacion(); 
+		Titulacion tit = new Titulacion(); 
 			
-			// ---------------- ID TITULACION ---------------- 
-			System.out.print(">> ID titulación: "); 
-			tit.setId(S.nextLine());
+		// ---------------- ID TITULACION ---------------- 
+		System.out.print(">> ID titulación: "); 
+		tit.setId(S.nextLine());
 			
-			// ---------------- NOMBRE TITULACION ---------------- 
-			System.out.print(">> Nombre titulación: "); 
-			tit.setNombre(S.nextLine());
+		// ---------------- NOMBRE TITULACION ---------------- 
+		System.out.print(">> Nombre titulación: "); 
+		tit.setNombre(S.nextLine());
 			
 			
-			// ---------------- SELECCIONAR ASIGNATURAS ---------------- 
-			ArrayList<Asignatura> asigs = asignaturasDisponibles(asigRepo); 
-			if (asigs == null) return null;
+		// ---------------- SELECCIONAR ASIGNATURAS ---------------- 
+		ArrayList<Asignatura> asigs = asignaturasDisponibles(asigRepo); 
+		if (asigs == null) return null;
 			
-			System.out.println(">> ASIGNATURAS DISPONIBLES <<");
-			for (Asignatura as : asigs) {
-				System.out.println(as.getId() + " - " + as.getNombre()); 
-			} 
+		System.out.println(">> ASIGNATURAS DISPONIBLES <<");
+		for (Asignatura as : asigs) {
+			System.out.println(as.getId() + " - " + as.getNombre()); 
+		} 
 			
-			String idAsig;
-			do {
-				System.out.print(">> ID asignatura a añadir (ENTER para terminar): ");
-				idAsig = S.nextLine();
-				if (!idAsig.isEmpty()) {
-					Asignatura as = asigRepo.get(idAsig); 
+		String idAsig;
+		do {
+			System.out.print(">> ID asignatura a añadir (ENTER para terminar): ");
+			idAsig = S.nextLine();
+			if (!idAsig.isEmpty()) {
+				Asignatura as = asigRepo.get(idAsig); 
 					
-					if (as != null) {
-						tit.addAsignatura(as);
-						System.out.println("Asignatura añadida."); 
-					} else {
-						System.out.println("ID no válido."); 
-					}
+				if (as != null && !idAsig.isBlank()) {
+					tit.addAsignatura(as);
+					System.out.println("Asignatura añadida."); 
+				} else {
+					System.out.println("ID no válido."); 
 				}
-			} while (!idAsig.isEmpty()); 
-			
-			if (tit.getAsignaturas().isEmpty()) { 
-				System.out.println("No se seleccionó ninguna asignatura.");
-				return null; 
 			}
+		} while (!idAsig.isEmpty()); 
+			
+		if (tit.getAsignaturas().isEmpty()) { 
+			System.out.println("No se seleccionó ninguna asignatura.");
+			return null; 
+		}
 			
 			
-			// ---------------- SELECCIONAR MATRICULAS ---------------- 
-			ArrayList<Matricula> disponibles = matRepo.list(); 
-			if (disponibles.isEmpty()) { 
-				System.out.println("No hay matrículas disponibles para titular."); 
-				return null; 
-			}
+		// ---------------- SELECCIONAR MATRICULAS ---------------- 
+		ArrayList<Matricula> disponibles = matRepo.list(); 
+		if (disponibles.isEmpty()) { 
+			System.out.println("No hay matrículas disponibles para titular."); 
+			return null; 
+		}
 			
-			System.out.println(">> MATRICULAS DISPONIBLES <<");
-			for (Matricula mat : disponibles) {
-				System.out.println(" - " + mat.getId()); 
-			} 
+		System.out.println(">> MATRICULAS DISPONIBLES <<");
+		for (Matricula mat : disponibles) {
+			System.out.println(" - " + mat.getId()); 
+		} 
 			
-			String idMat;
-			do {
-				System.out.print(">> ID matricula a añadir (ENTER para terminar): ");
-				idMat = S.nextLine();
-				if (!idMat.isEmpty()) {
-					Asignatura as = asigRepo.get(idMat); 
+		String idMat;
+		do {
+			System.out.print(">> ID matricula a añadir (ENTER para terminar): ");
+			idMat = S.nextLine();
+			if (!idMat.isEmpty()) {
+				Matricula mat = matRepo.get(idMat);
 					
-					if (as != null) {
-						tit.addAsignatura(as);
-						System.out.println("Asignatura añadida."); 
-					} else {
-						System.out.println("ID no válido."); 
-					}
+				if (mat != null && !idMat.isBlank()) {
+					tit.addMatricula(mat);
+					System.out.println("Matricula añadida."); 
+				} else {
+					System.out.println("ID no válido."); 
 				}
-			} while (!idMat.isEmpty()); 
-			
-			if (tit.getAsignaturas().isEmpty()) { 
-				System.out.println("No se seleccionó ninguna asignatura.");
-				return null; 
 			}
+		} while (!idMat.isEmpty()); 
 			
-			return tit;
+		if (tit.getAsignaturas().isEmpty()) { 
+			System.out.println("No se seleccionó ninguna asignatura.");
+			return null; 
+		}
+			
+		return tit;
 	}
 		
 	
