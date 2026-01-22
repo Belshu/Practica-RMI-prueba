@@ -7,10 +7,10 @@ import java.util.function.Function;
 
 import edu.ucam.interfaces.IRepository;
 
-public class BaseRepository <T> extends UnicastRemoteObject implements IRepository<T>{
+public abstract class BaseRepository <T> extends UnicastRemoteObject implements IRepository<T>{
 	private static final long serialVersionUID = 2L;
 	
-	private final ArrayList<T> data = new ArrayList<>();
+	private final ArrayList<T> datas = new ArrayList<>();
 	private final Function<T, String> idGetter;
 	
 	protected BaseRepository(Function<T, String> idGetter) throws RemoteException {
@@ -27,7 +27,7 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 			return;
 		}
 		
-		data.add(obj);
+		datas.add(obj);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 		T obj = get(id);
 		
 		if(obj != null) {
-			data.remove(obj);
+			datas.remove(obj);
 			return true;
 		}
 		
@@ -44,7 +44,7 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 
 	@Override
 	public T get(String id) throws RemoteException {
-		for(T obj : data) {
+		for(T obj : datas) {
 			if(idGetter.apply(obj).equals(id)) return obj;
 		}
 		
@@ -53,7 +53,7 @@ public class BaseRepository <T> extends UnicastRemoteObject implements IReposito
 
 	@Override
 	public ArrayList<T> list() throws RemoteException {
-		return new ArrayList<>(data);
+		return new ArrayList<>(datas);
 	}
 	
 }

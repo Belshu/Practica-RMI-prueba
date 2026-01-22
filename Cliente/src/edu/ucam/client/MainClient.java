@@ -11,10 +11,13 @@ public class MainClient {
 	private final static Scanner S = new Scanner(System.in);
 	
 	public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException {
-		ClientMenu clientMenu = new ClientMenu(ClientConfig.nameBindContract);
+		ClientMenu clientMenu = new ClientMenu(ClientConfig.nameBindContract); // AUTENTICAR
 		
 		if(clientMenu.autentication(S)) {
-			clientMenu.initializeMenu(S, ClientConfig.nameBindAsigRepository);
+			
+			// REPOSITORIOS
+			clientMenu.initializeMenu(S, 
+					ClientConfig.nameBindAsigRepository, ClientConfig.nameBindMatRepository, ClientConfig.nameBindTitRepository);
 		} else {
 			System.out.println("Autenticacion incorrecta!");
 		}

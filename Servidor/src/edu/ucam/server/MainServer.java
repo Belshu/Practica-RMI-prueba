@@ -14,17 +14,21 @@ import edu.ucam.server.datas.*;
 
 public class MainServer {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
-		LocateRegistry.createRegistry(5000);
+		LocateRegistry.createRegistry(ServerConfig.PORT); // 5000
 		
 		IContract contract = new ContractImp();
 		IRepository <Asignatura> asigRepo = new AsignaturasRepository();
+		IRepository<Matricula> matRepo = new MatriculasRepository(); 
+		IRepository<Titulacion> titRepo = new TitulacionesRepository();
 		
 		Naming.rebind(ServerConfig.nameBindContract, contract);
 		Naming.rebind(ServerConfig.nameBindAsigRepository, asigRepo);
+		Naming.rebind(ServerConfig.nameBindMatRepository, matRepo); 
+		Naming.rebind(ServerConfig.nameBindTitRepository, titRepo);
 		
-		System.out.print("Servidor abierto...");
+		System.out.print("Servidor abierto [ENTER para cerrar]: ");
+		
 		Scanner S = new Scanner(System.in);
-		
 		S.nextLine();
 		
 		System.exit(0);
