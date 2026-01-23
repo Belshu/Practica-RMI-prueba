@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.ucam.client.handlers.AddHandler;
@@ -17,23 +16,26 @@ import edu.ucam.domain.Titulacion;
 import edu.ucam.interfaces.IContract;
 import edu.ucam.interfaces.IRepository;
 
-
-
 public class ClientMenu {
-	private IContract autenticationServer;
+	private final IContract autenticationServer;
 	private IRepository<Asignatura> asigRepo; 
 	private IRepository<Titulacion> titRepo;
 	private IRepository<Matricula> matRepo;
 	
 	// -------------------------------------------------------- HANDLERS
-	private final AddHandler addHandler = new AddHandler();
-	private final GetHandler getHandler = new GetHandler();
-	private final RemoveHandler removeHandler = new RemoveHandler();
-	private final ListHandler listHandler = new ListHandler();
+	private final AddHandler addHandler;
+	private final GetHandler getHandler;
+	private final RemoveHandler removeHandler;
+	private final ListHandler listHandler;
 	
 	// -------------------------------------------------------- CONSTRUCTOR
 	public ClientMenu(String url) throws MalformedURLException, RemoteException, NotBoundException{
 		this.autenticationServer = (IContract)Naming.lookup(url);
+		
+		addHandler = new AddHandler();
+		getHandler = new GetHandler();
+		removeHandler = new RemoveHandler();
+		listHandler = new ListHandler();
 	}
 	
 	// -------------------------------------------------------- AUTENTICACIÓN DE USUARIO
@@ -220,7 +222,7 @@ public class ClientMenu {
 					
 					// ---------------- AÑADIR TITULACIÓN ---------------- 
 					case "1":
-						tit = addHandler.addTIT(S, asigRepo, matRepo);
+						tit = addHandler.addTit(S, asigRepo, matRepo);
 						if(tit == null) {
 							System.out.println("ERROR: añadir titulación");
 							break;
@@ -249,7 +251,7 @@ public class ClientMenu {
 					break;
 					
 					// ---------------- LISTAR TITULACIONES ---------------- 
-					case "4": listHandler.listTIT(titRepo); break;
+					case "4": listHandler.listTit(titRepo); break;
 
 					default: System.out.println("Respuesta no válida"); 
 				}

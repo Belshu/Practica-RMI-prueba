@@ -3,5 +3,4 @@ module Servidor {
 	requires clasesdominiov2;
 	
 	exports edu.ucam.interfaces;
-	exports edu.ucam.server;
 }

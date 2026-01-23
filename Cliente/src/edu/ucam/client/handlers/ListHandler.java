@@ -30,6 +30,7 @@ public class ListHandler {
 			+ "| Creditos -> " + asig.getCreditos());
 		}
 	}
+	
 	public void listMatriculas(IRepository<Matricula> matRepo) throws RemoteException {
 		ArrayList<Matricula> matriculas = matRepo.list();
 		
@@ -57,7 +58,7 @@ public class ListHandler {
 		}
 		
 		
-	public void listTIT(IRepository<Titulacion> titRepo) throws RemoteException { 
+	public void listTit(IRepository<Titulacion> titRepo) throws RemoteException { 
 		ArrayList<Titulacion> titulaciones = titRepo.list();
 		
 		if (titulaciones == null) { 

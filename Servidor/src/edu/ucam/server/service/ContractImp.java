@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import edu.ucam.interfaces.IContract;
+import edu.ucam.server.config.ServerConfig;
 
 public class ContractImp extends UnicastRemoteObject implements IContract{
 	private static final long serialVersionUID = 1L;
@@ -14,6 +15,6 @@ public class ContractImp extends UnicastRemoteObject implements IContract{
 
 	@Override
 	public boolean autentication(String user, String pass) throws RemoteException {
-		return user.equals("admin") && pass.equals("admin");
+		return user.equals(ServerConfig.name) && pass.equals(ServerConfig.pass);
 	}
 }

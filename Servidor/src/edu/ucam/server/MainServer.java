@@ -16,16 +16,22 @@ public class MainServer {
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 		LocateRegistry.createRegistry(ServerConfig.PORT); // 5000
 		
-		IContract contract = new ContractImp();
-		IRepository <Asignatura> asigRepo = new AsignaturasRepository();
-		IRepository<Matricula> matRepo = new MatriculasRepository(); 
-		IRepository<Titulacion> titRepo = new TitulacionesRepository();
 		
+		// --------------------------------------- REPOSITORIOS
+		IContract contract = new ContractImp();
+		IRepository <Asignatura> asigRepo = new AsigRepository();
+		IRepository<Matricula> matRepo = new MatRepository(); 
+		IRepository<Titulacion> titRepo = new TitRepository();
+		
+		
+		// --------------------------------------- NOMBRES DE REPOSITORIOS
 		Naming.rebind(ServerConfig.nameBindContract, contract);
 		Naming.rebind(ServerConfig.nameBindAsigRepository, asigRepo);
 		Naming.rebind(ServerConfig.nameBindMatRepository, matRepo); 
 		Naming.rebind(ServerConfig.nameBindTitRepository, titRepo);
 		
+		
+		// --------------------------------------- CERRAR SERVIDOR
 		System.out.print("Servidor abierto [ENTER para cerrar]: ");
 		
 		Scanner S = new Scanner(System.in);

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import edu.ucam.domain.Asignatura;
 import edu.ucam.interfaces.IRepository;
 
-public class AsignaturasRepository extends BaseRepository <Asignatura>{
+public class AsigRepository extends BaseRepository <Asignatura>{
 	private static final long serialVersionUID = 3L;
 
-	public AsignaturasRepository() throws RemoteException {
+	public AsigRepository() throws RemoteException {
 		super(Asignatura::getId);
 	}
 }

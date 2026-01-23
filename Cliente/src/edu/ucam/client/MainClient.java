@@ -13,9 +13,11 @@ public class MainClient {
 	public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException {
 		ClientMenu clientMenu = new ClientMenu(ClientConfig.nameBindContract); // AUTENTICAR
 		
+		
+		// --------------------------------------- CREDENCIALES
 		if(clientMenu.autentication(S)) {
 			
-			// REPOSITORIOS
+			// --------------------------------------- MENU PRINCIPAL
 			clientMenu.initializeMenu(S, 
 					ClientConfig.nameBindAsigRepository, ClientConfig.nameBindMatRepository, ClientConfig.nameBindTitRepository);
 		} else {

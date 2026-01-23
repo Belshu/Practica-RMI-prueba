@@ -38,7 +38,7 @@ public class AddHandler {
 	}
 	
 	// --------------------------------------------------------AÑADIR TITULOS
-	public Titulacion addTIT(Scanner S, IRepository<Asignatura> asigRepo, IRepository<Matricula> matRepo) throws RemoteException {  
+	public Titulacion addTit(Scanner S, IRepository<Asignatura> asigRepo, IRepository<Matricula> matRepo) throws RemoteException {  
 		Titulacion tit = new Titulacion(); 
 			
 		// ---------------- ID TITULACION ---------------- 
